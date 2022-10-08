@@ -16,7 +16,7 @@ export default class CreateNote extends Component {
     }
 
     async componentDidMount() {
-        const res = await axios.get('http://localhost:5000/api/users');
+        const res = await axios.get('https://sdi-backend.herokuapp.com/api/users');
         if (res.data.length > 0) {
             this.setState({
                 users: res.data.map(user => user.username),
@@ -25,7 +25,7 @@ export default class CreateNote extends Component {
         }
         if (this.props.match.params.id) {
             console.log(this.props.match.params.id)
-            const res = await axios.get('http://localhost:5000/api/notes/' + this.props.match.params.id);
+            const res = await axios.get('https://sdi-backend.herokuapp.com/api/notes/' + this.props.match.params.id);
             console.log(res.data)
             this.setState({
                 title: res.data.title,
@@ -45,7 +45,7 @@ export default class CreateNote extends Component {
                 author: this.state.userSelected,
                 date: this.state.date
             };
-            await axios.put('http://localhost:5000/api/notes/' + this.state._id, updatedNote).then(window.location.href = '/');
+            await axios.put('https://sdi-backend.herokuapp.com/api/notes/' + this.state._id, updatedNote).then(window.location.href = '/');
        
         
     }
